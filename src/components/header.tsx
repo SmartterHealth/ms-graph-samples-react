@@ -1,18 +1,21 @@
 import * as React from 'react';
+import { LoginButton } from './login-button'
 
 export interface IHeaderProps {
 
 }
 
+const style = {
+    padding: '10px'
+}
+
 export const Header = (props?: IHeaderProps) => {
-    return (<nav>
-        <div className="nav-wrapper">
+    return (<div><nav className="light-blue darken-4" >
+        <div className="nav-wrapper" style={ style }>
             <a href="#" className="brand-logo">OneDrive</a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li>
+                <li><LoginButton class="btn light-blue lighten-4 black-text"/></li>
             </ul>
         </div>
-    </nav>);
+    </nav></div>);
 };
