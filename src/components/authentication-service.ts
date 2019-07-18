@@ -39,31 +39,27 @@ export class AuthenticationService {
 	public async login(): Promise<IAuthenticationResponse> {
 		let msalResponse = await this._msalInstance.loginPopup(this._msalRequest);
 
-		let response: IAuthenticationResponse = {
+		return {
 			status: AuthenticationStatus.LoggedIn,
 			message: "The user has been logged in",
 		};
-
-		return response;
 	}
 
 	public async logout(): Promise<IAuthenticationResponse> {
-		let response: IAuthenticationResponse = {
-			status: AuthenticationStatus.LoggedOut,
-			message: "The user has been logged out",
-		};
 
 		await this._msalInstance.logout();
 
 		// Ha ha ha - this will never get called...
-		return response;
+		return {
+			status: AuthenticationStatus.LoggedOut,
+			message: "The user has been logged out",
+		};;
 	}
 }
 
 export enum AuthenticationStatus {
 	LoggedOut = 0,
-	LoggedIn = 1,
-	Error = 16,
+	LoggedIn = 1
 }
 
 export interface IAuthenticationResponse {
