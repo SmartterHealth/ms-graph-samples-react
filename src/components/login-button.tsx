@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { AuthenticationService, AuthenticationStatus } from './authentication-service';
+import { AuthenticationProvider, AuthenticationStatus } from '../authentication-provider';
 
-const auth = AuthenticationService.getInstance();
+const auth = AuthenticationProvider.getInstance();
 
 interface ILoginButtonProps {
     class?: string;

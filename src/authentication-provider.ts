@@ -1,8 +1,9 @@
 import * as Msal from "msal";
+import * as MicrosoftGraph from '@microsoft/microsoft-graph-client'
 
-let singleton: AuthenticationService = null;
+let singleton: AuthenticationProvider = null;
 
-export class AuthenticationService {
+export class AuthenticationProvider implements MicrosoftGraph.AuthenticationProvider {
 	constructor() {
 		this._msalInstance = new Msal.UserAgentApplication(this._msalConfig);
 	}
@@ -28,12 +29,26 @@ export class AuthenticationService {
 		return this.account != null;
 	}
 
-	public static getInstance(): AuthenticationService {
+	public static getInstance(): AuthenticationProvider {
 		if (singleton === null) {
-			singleton = new AuthenticationService();
+			singleton = new AuthenticationProvider();
 		}
 
 		return singleton;
+	}
+
+	public async getAccessToken(): Promise<string> {
+		const options = { scopes: ["https://graph.microsoft.com/.default"]}
+		
+		console.log(options)
+		const res = await this._msalInstance.acquireTokenSilent(options);
+		return res.accessToken;
+	}
+
+	public async getAccessToken2(scopes: string[] = ["https://graph.microsoft.com/.default"]) {
+		if(this.isLoggedIn) {
+			return this._msalInstance.acquireTokenSilent({ scopes: scopes});
+		}
 	}
 
 	public async login(): Promise<IAuthenticationResponse> {
@@ -54,6 +69,10 @@ export class AuthenticationService {
 			status: AuthenticationStatus.LoggedOut,
 			message: "The user has been logged out",
 		};;
+	}
+
+	public authProvider() {
+		return this._msalInstance;
 	}
 }
 

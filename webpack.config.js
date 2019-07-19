@@ -42,6 +42,8 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM",
-        "msal": "Msal"
+        "msal": "Msal",
+        "@microsoft/microsoft-graph-client": "MicrosoftGraph",
+        "materialize-css": "M"
     }
 };
