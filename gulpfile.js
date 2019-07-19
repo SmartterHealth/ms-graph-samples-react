@@ -10,12 +10,17 @@ function clean() {
 }
 exports.clean = clean;
 
-function copy() {
-    return gulp.src(['./src/index.html'])
+function copyImages() {
+    return gulp.src('./src/images/**/*.*')
+    .pipe(gulp.dest('./.www/images'))
+}
+
+function copyHtml() {
+    return gulp.src(['./src/**/*.html'])
     .pipe(gulp.dest('./.www'))
 }
 
-exports.copy = copy;
+exports.copy = gulp.parallel(copyImages, copyHtml);
 
 
 function webpack(cb) {
@@ -25,9 +30,7 @@ function webpack(cb) {
 }
 exports.webpack = webpack;
 
-
-
-const build = gulp.series(clean, copy, webpack);
+const build = gulp.series(clean, exports.copy, webpack);
 
 function serve(cb) {
     connect.server({

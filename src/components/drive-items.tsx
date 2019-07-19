@@ -34,7 +34,12 @@ function DriveItemCard(props: IDriveItemCardProps): React.ReactElement {
     const di = props.driveItem;
     return (
         <div className="card">
+            
+            <div className="card-image"><img src="https://static2.sharepointonline.com/files/fabric/assets/brand-icons/product-fluent/svg/word_48x1.svg" width="48" height="48"/></div>
             <div className="card-title">{ di.name }</div>
+            <div className="card-content">
+
+            </div>
             <div className="card-action">
                 <a href={di.webUrl}>Open</a>
             </div>
