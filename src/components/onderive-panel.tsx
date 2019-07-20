@@ -9,8 +9,8 @@ const isLoggedIn = authProvider.isLoggedIn;
 const disabled = 'tab col s4' + ((isLoggedIn) ? '' : ' disabled');
 
 interface IOneDrivePanelState {
-    recent: IDriveItemState;
-    sharedWithMe: IDriveItemState;
+    recent?: IDriveItemState;
+    sharedWithMe?: IDriveItemState;
 }
 
 interface IDriveItemState {
@@ -33,46 +33,118 @@ const defaultState = {
     }
 }
 
-export default class OneDrivePanel extends React.Component<IOneDrivePanelProps, IOneDrivePanelState> {
+export default class OneDrivePanel extends React.Component<
+				IOneDrivePanelProps,
+				IOneDrivePanelState
+			> {
+				constructor(props: IOneDrivePanelProps) {
+					super(props);
 
-    constructor(props: IOneDrivePanelProps) {
-        super(props);
+					this.state = defaultState;
+				}
 
-        this.state = defaultState;
-    }
+				render() {
+					return (
+						<div id="onedrive-panel">
+							<div className="row" id="onedrive-tabs">
+								<div className="col s12">
+									<ul className="tabs">
+										<li className="tab col s4">
+											<a href="#m-tab-welcome">
+												Welcome
+											</a>
+										</li>
+										<li className={disabled}>
+											<a
+												href="#m-tab-recent-items"
+												onClick={
+													this
+														.handleRecentTabClicked
+												}
+											>
+												Recent
+											</a>
+										</li>
+										<li className={disabled}>
+											<a
+												href="#m-tab-shared-with-me"
+												onClick={
+													this
+														.handleRSharedWithMeTabClicked
+												}
+											>
+												Shared with Me
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
 
-    render() {
-        return (
-            <div id="onedrive-panel">
-                <div className="row" id="onedrive-tabs">
-                    <div className="col s12">
-                        <ul className="tabs">
-                            <li className="tab col s4"><a href="#m-tab-welcome">Welcome</a></li>
-                            <li className={disabled}><a href="#m-tab-recent-items">Recent</a></li>
-                            <li className={disabled}><a href="#m-tab-shared-with-me">Shared with Me</a></li>
-                        </ul>
-                    </div>
-                </div>
+							<div className="row">
+								<div id="m-tab-welcome" className="col s12">
+									<h2>Welcome!</h2>
+								</div>
+								<div
+									id="m-tab-recent-items"
+									className="col s12"
+								>
+									<DriveItemCardList
+										driveItems={
+											this.state.recent.driveItems
+										}
+									/>
+								</div>
+								<div
+									id="m-tab-shared-with-me"
+									className="col s12"
+								>
+									<DriveItemCardList
+										driveItems={
+											this.state.sharedWithMe
+												.driveItems
+										}
+									/>
+								</div>
+							</div>
+						</div>
+					);
+				}
 
-                <div className="row">
-                <div id="m-tab-welcome" className="col s12">
-                    <h2>Welcome!</h2>
-                </div>
-                <div id="m-tab-recent-items" className="col s12">                        
-                    <DriveItemCardList driveItems={this.state.recent.driveItems}/> 
-                </div>
-                <div id="m-tab-shared-with-me" className="col s12">
-                    <DriveItemCardList driveItems={this.state.sharedWithMe.driveItems}/> 
-                </div>
-            </div>
-            </div>
-        )
-    }
+				private resetState(state: IOneDrivePanelState) {
+					if (state.recent === null) {
+						state.recent = { driveItems: [], loaded: false };
+					}
+					if (state.sharedWithMe === null) {
+						state.sharedWithMe = { driveItems: [], loaded: false };
+					}
+					this.setState(state);
+				}
 
-    handleTabClicked: (e: React.MouseEvent) => {
-        
-    }
-}
+				handleRecentTabClicked = async (e: React.MouseEvent) => {		
+					this.resetState({
+						recent: {
+							driveItems: await getDriveItems("/me/drive/recent"),
+							loaded: true,
+						},
+					});
+				};
+
+				handleRSharedWithMeTabClicked = async (e: React.MouseEvent) => {
+					this.resetState({
+						sharedWithMe: {
+							driveItems: await getDriveItems("/me/drive/sharedWithMe"),
+							loaded: true,
+						},
+					});
+				};
+
+				private getDriveItems(
+					path: string,
+					maxDriveItems: number = 25
+				): Promise<IDriveItem[]> {
+					return null;
+				}
+			}
 
 // export default function OneDrivePanel(props: IOneDrivePanelProps) {
 
