@@ -18,4 +18,4 @@ You can substitute **yarn** for **npm** if that is your preferred package manage
 * [React]
 * [Working with files in Microsoft Graph](https://docs.microsoft.com/en-us/graph/api/resources/onedrive?view=graph-rest-1.0)
 
- [React]: htps://reactjs.org
+ [React]:https://reactjs.org
