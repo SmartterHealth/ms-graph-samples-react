@@ -20,7 +20,7 @@ You can also download the *.zip file, and extract to the desired directory on yo
 ## Dependancies
 
 * [Microsoft Authentication Library for JavaScript (MSAL)](https://www.npmjs.com/package/msal) 
-* [Microsoft Graph JavaScript Client Library](https://www.npmjs.org/packages/@microsoft/microsoft-graph-client)
+* [Microsoft Graph JavaScript Client Library](https://www.npmjs.com/package/@microsoft/microsoft-graph-client)
 * [React](https://www.npmjs.com/package/react)
 * [ReactDOM](https://www.npmjs.com/package/react-dom)
 
