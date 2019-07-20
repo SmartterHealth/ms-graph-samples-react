@@ -15,7 +15,7 @@ You can substitute **yarn** for **npm** if that is your preferred package manage
 
 ## Resources
 * [Microsoft Graph REST API v1.0 reference](https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0) 
-* [React.js]
+* [React]
 * [Working with files in Microsoft Graph](https://docs.microsoft.com/en-us/graph/api/resources/onedrive?view=graph-rest-1.0)
 
- [React.js]: (htps://reactjs.org)
+ [React]: htps://reactjs.org
