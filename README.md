@@ -1,4 +1,4 @@
-![SmartterHealth](smartterhealth.png | width=300)
+<img src="smartterhealth.png" width="300" />
 
 # ms-graph-samples-react
 
