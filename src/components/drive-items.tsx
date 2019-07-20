@@ -1,11 +1,17 @@
 import * as React from 'react'
+import { FileIcon } from './file-icon';
 
 
 interface IDriveItem {
     id?: string,
     name?: string,
-    webUrl?: string
+    webUrl?: string,
+    file: IFile,
     [key: string]: any;
+}
+
+interface IFile {
+    mimeType?: string;
 }
 
 interface IDriveItemCardListProps {
@@ -33,15 +39,22 @@ interface IDriveItemCardProps {
 function DriveItemCard(props: IDriveItemCardProps): React.ReactElement {
     const di = props.driveItem;
     return (
-        <div className="card">
+        <div className="card horizontal">
             
-            <div className="card-image"><img src="https://static2.sharepointonline.com/files/fabric/assets/brand-icons/product-fluent/svg/word_48x1.svg" width="48" height="48"/></div>
+            <div className="card-image">
+                <FileIcon mimeType={di.file.mimeType} />
+            </div>
+            <div className="card-stacked">
             <div className="card-title">{ di.name }</div>
             <div className="card-content">
-
+                <ul>
+                    <li><b>Created: </b>{ di.fileSystemInfo.createdDateTime} </li>
+                    <li><b>Last Modified: </b>{ di.fileSystemInfo.lastModifiedDateTime} </li>
+                </ul>
             </div>
             <div className="card-action">
                 <a href={di.webUrl}>Open</a>
+            </div>
             </div>
         </div>
     )

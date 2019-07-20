@@ -8,7 +8,8 @@ const authProvider = AuthenticationProvider.getInstance();
 const isLoggedIn = authProvider.isLoggedIn;
 
 interface IOneDrivePanelState {
-    driveItems: IDriveItem[];
+    recentDriveItems: IDriveItem[];
+    sharedWithMeDriveItems: IDriveItem[];
 }
 
 interface IOneDrivePanelProps {
@@ -20,7 +21,7 @@ interface IOneDrivePanelProps {
 
 function OneDrivePanel(props: IOneDrivePanelProps) {
 
-    const [state, setState] = React.useState({ driveItems: [] });
+    const [state, setState] = React.useState({ recentDriveItems: [], sharedWithMeDriveItems: [] });
     
     const disabled = 'tab col s4' + ((isLoggedIn) ? '' : ' disabled');
 
@@ -32,18 +33,16 @@ function OneDrivePanel(props: IOneDrivePanelProps) {
                     <ul className="tabs">
                         <li className="tab col s4"><a href="#m-tab-welcome">Welcome</a></li>
                         <li className={disabled}><a href="#m-tab-recent-items" onClick={async (e) => {
-                            setState({ driveItems: []});
                             getDriveItems('/me/drive/recent', props.maxDriveItems)
                             .then((results) => {
-                                setState({driveItems: results })
+                                setState({recentDriveItems: results, sharedWithMeDriveItems: [] })
                             });
                             
                         }}>Recent Items</a></li>
                         <li className={disabled}><a href="#m-tab-shared-with-me"onClick={async (e) => {
-                            setState({ driveItems: []});
                             getDriveItems('/me/drive/sharedWithMe', props.maxDriveItems)
-                            .then((results) => {
-                                setState({driveItems: results })
+                            .then((recentDriveItems) => {
+                                setState({sharedWithMeDriveItems: recentDriveItems, recentDriveItems: [] })
                             });
                             
                         }}>Shared With Me</a></li>
@@ -56,10 +55,10 @@ function OneDrivePanel(props: IOneDrivePanelProps) {
                     <h2>Welcome!</h2>
                 </div>
                 <div id="m-tab-recent-items" className="col s12">                        
-                    <DriveItemCardList driveItems={state.driveItems}/> 
+                    <DriveItemCardList driveItems={state.recentDriveItems}/> 
                 </div>
                 <div id="m-tab-shared-with-me" className="col s12">
-                    <DriveItemCardList driveItems={state.driveItems}/> 
+                    <DriveItemCardList driveItems={state.sharedWithMeDriveItems}/> 
                 </div>
             </div>
         </div>
@@ -75,7 +74,7 @@ async function getDriveItems(path: string, maxDriveItems: number = 25): Promise<
     }
     
     const client = MicrosoftGraph.Client.initWithMiddleware(options);
-    const results = await client.api('/me/drive/sharedWithMe').top(maxDriveItems).get();
+    const results = await client.api(path).top(maxDriveItems).get();
     console.log(results.value.length);
     return results.value;
 }
