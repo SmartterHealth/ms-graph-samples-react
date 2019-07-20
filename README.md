@@ -26,6 +26,9 @@ You can also download the *.zip file, and extract to the desired directory on yo
 ## Development Dependancies
 
 * [Gulp](https://www.npmjs.com/package/gulp)
+	* [Gulp Connect](https://www.npmjs.com/package/gulp-connect)
+	* [Gulp Stream](https://www.npmjs.com/package/gulp-stream)
+	* [Del](https://www.npmjs.com/package/del)
 * [TypeScript](https://www.npmjs.com/package/typescript)
 
 ## Resources
