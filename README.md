@@ -32,4 +32,4 @@ You can also download the *.zip file, and extract to the desired directory on yo
 * [Microsoft Graph REST API v1.0 reference](https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0) 
 * [React]
 
-[React]:(https://reactjs.org)
+[React]:https://reactjs.org
