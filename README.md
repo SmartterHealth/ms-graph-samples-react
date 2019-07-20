@@ -2,7 +2,7 @@
 
 # Microsoft Graph Samples (React) <img src="react.png" width="100" valign="middle" />
 
-This is a collection of packages that demonstrate how to connect to the Microsoft Graph using [React.js].
+This is a collection of packages that demonstrate how to connect to the Microsoft Graph using [React].
 
 ## Steps to Awesome
 
@@ -30,6 +30,6 @@ You can also download the *.zip file, and extract to the desired directory on yo
 
 ## Resources
 * [Microsoft Graph REST API v1.0 reference](https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0) 
-* [React.js]
+* [React]
 
-[React.js]: (https://reactjs.org)
+[React]:(https://reactjs.org)
