@@ -17,14 +17,14 @@ You can also download the *.zip file, and extract to the desired directory on yo
 
 * [OneDrive Sample](onedrive/README.md)
 
-## Dependancies
+## Dependencies
 
 * [Microsoft Authentication Library for JavaScript (MSAL)](https://www.npmjs.com/package/msal) 
 * [Microsoft Graph JavaScript Client Library](https://www.npmjs.com/package/@microsoft/microsoft-graph-client)
 * [React](https://www.npmjs.com/package/react)
 * [ReactDOM](https://www.npmjs.com/package/react-dom)
 
-## Development Dependancies
+## Development Dependencies
 
 * [Gulp](https://www.npmjs.com/package/gulp)
 	* [Gulp Connect](https://www.npmjs.com/package/gulp-connect)
