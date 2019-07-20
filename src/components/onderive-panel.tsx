@@ -16,9 +16,6 @@ interface IOneDrivePanelProps {
     maxDriveItems: number;
 }
 
-
-
-
 function OneDrivePanel(props: IOneDrivePanelProps) {
 
     const [state, setState] = React.useState({ recentDriveItems: [], sharedWithMeDriveItems: [] });

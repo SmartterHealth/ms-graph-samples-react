@@ -27,7 +27,7 @@ function DriveItemCardList(props: IDriveItemCardListProps) {
     if(props.driveItems && props.driveItems.length > 0) {
         return <div> { listItems } </div>
     } else {
-        return <h3>Loading... please wait.</h3>
+        return <div className="center-align"><img src="/images/onedrive.png" width="100"/><h4>Loading... please wait.</h4></div>
     }
 
 }
