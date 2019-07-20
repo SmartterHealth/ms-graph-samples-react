@@ -4,7 +4,9 @@ module.exports = {
     mode: "production",
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
+    devtool: "cheap-module-eval-source-map",
+
+    entry: "./src/app.tsx",
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.

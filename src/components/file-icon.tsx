@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-interface IFileIconProps {
+export interface IFileIconProps {
     extension?: string;
     mimeType: string;
     width?: number;
     height?: number;
 }
 
-function FileIcon(props: IFileIconProps) {
+const FileIcon = (props: IFileIconProps) => {
     if(!props.mimeType) props.mimeType = 'unknown';
     if(!props.width) props.width = 40;
     if(!props.height) props.height = props.width;
@@ -16,7 +16,7 @@ function FileIcon(props: IFileIconProps) {
     )
 }
 
-export { FileIcon }
+export default FileIcon;
 
 function getFileIconPath(mimeType: string) {
     const imgRoot = '/images/'

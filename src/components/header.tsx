@@ -9,7 +9,7 @@ const style = {
     padding: '10px'
 }
 
-export const Header = (props?: IHeaderProps) => {
+const Header = (props?: IHeaderProps) => {
     return (<div><nav className="light-blue darken-4" >
         <div className="nav-wrapper" style={ style }>
             <a href="#" className="brand-logo">OneDrive</a>
@@ -19,3 +19,5 @@ export const Header = (props?: IHeaderProps) => {
         </div>
     </nav></div>);
 };
+
+export default Header;
